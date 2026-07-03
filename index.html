@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Capsule | 时空胶囊</title>
+  <link rel="stylesheet" href="time-capsule.css">
+</head>
+<body>
+  <!-- 首页 -->
+  <div class="page" id="page-home">
+    <div class="home-content">
+      <h1 class="home-title">时空胶囊</h1>
+      <p class="home-sub">封存当下，寄语未来</p>
+      <button class="btn-create" onclick="navigate('create')">创建胶囊</button>
+      <button class="btn-list" onclick="navigate('list')">我的胶囊</button>
+    </div>
+  </div>
+
+  <!-- 创建页 -->
+  <div class="page" id="page-create" style="display:none">
+    <div class="create-content">
+      <h2 class="page-title">创建胶囊</h2>
+      <form class="create-form" onsubmit="return saveCapsule()">
+        <div class="form-group">
+          <label>标题</label>
+          <input type="text" id="input-title" placeholder="给胶囊起个名字（可选）">
+        </div>
+        <div class="form-group">
+          <label>内容</label>
+          <textarea id="input-content" placeholder="写下你想封存的记忆..." rows="8"></textarea>
+        </div>
+        <div class="form-group">
+          <label>图片（可选）</label>
+          <input type="file" id="input-image" accept="image/*" onchange="previewImage()">
+          <div class="image-preview" id="image-preview" style="display:none"></div>
+        </div>
+        <div class="form-group">
+          <label>开启日期</label>
+          <input type="date" id="input-date">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" onclick="navigate('home')">取消</button>
+          <button type="submit" class="btn-save">封存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 胶囊列表 -->
+  <div class="page" id="page-list" style="display:none">
+    <div class="list-content">
+      <h2 class="page-title">我的胶囊</h2>
+      <div class="capsule-grid" id="capsule-grid"></div>
+      <button class="btn-back" onclick="navigate('home')">返回</button>
+    </div>
+  </div>
+
+  <!-- 开启页 -->
+  <div class="page" id="page-open" style="display:none">
+    <div class="open-content">
+      <div class="open-header">
+        <span class="open-time" id="open-time"></span>
+        <button class="btn-close" onclick="navigate('list')">关闭</button>
+      </div>
+      <div class="open-body" id="open-body"></div>
+    </div>
+  </div>
+
+  <script src="time-capsule.js"></script>
+</body>
+</html>
